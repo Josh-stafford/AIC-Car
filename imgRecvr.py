@@ -1,6 +1,5 @@
 import socket
 from time import sleep
-import threading
 
 HOST = '192.168.1.251'
 PORT = int(input(">> "))
@@ -27,38 +26,28 @@ def process(arr):
     img = [ int(x) for x in arr ]
     asciiDisplay(img, 32, 32)
 
-class recv(threading.Thread):
 
-    def __init__(self, threadID, name):
-        threading.Thread.__init__(self)
-        self.threadID = threadID
-        self.name = name
+recv_array = False
+img_data = ""
+count = 0
 
-    def run(self):
-        recv_array = False
+while True:
+    data = s.recv(1)
+    count += 1
+    data = data.decode('utf-8')
+    if data == "*":
+        print("Start array")
+        recv_array = True
         img_data = ""
+    elif data == ".":
+        print("End array")
+        recv_array = False
+        # print(img_data)
+        print(count)
         count = 0
-
-        while True:
-            data = s.recv(1)
-            count += 1
-            data = data.decode('utf-8')
-            if data == "*":
-                print("Start array")
-                recv_array = True
-                img_data = ""
-            elif data == ".":
-                print("End array")
-                recv_array = False
-                # print(img_data)
-                print(count)
-                count = 0
-                process(img_data.split(','))
-                #  asciiDisplay(img_data, 32, 32)
-            else:
-                # print(data)
-                img_data += data
-                # print(img_data)
-
-recvThread = recv(1, 'recvThread')
-recvThread.start()
+        process(img_data.split(','))
+        #  asciiDisplay(img_data, 32, 32)
+    else:
+        # print(data)
+        img_data += data
+        # print(img_data)
