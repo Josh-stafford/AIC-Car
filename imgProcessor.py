@@ -11,10 +11,4 @@ def getImage():
 def frame():
     frame = getImage()
     gray_image = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    flat = []
-    for x in range(0, len(gray_image)):
-        for y in range(len(gray_image[0])):
-            val = gray_image[x][y]
-            flat.append(val)
-    print(len(flat))
-    return flat
+    return gray_image
