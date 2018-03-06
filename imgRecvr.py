@@ -45,6 +45,7 @@ while True:
         recv_array = False
         # print(img_data)
         print(count)
+        count = 0
         process(img_data.split(','))
         #  asciiDisplay(img_data, 32, 32)
     else:
