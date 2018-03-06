@@ -1,7 +1,7 @@
 import socket
 from time import sleep
 
-HOST = '172.20.12.187'
+HOST = '192.168.1.251'
 PORT = int(input(">> "))
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -28,6 +28,10 @@ recv_array = False
 img_data = ""
 count = 0
 
+def process(arr):
+    img = [ int(x) for x in arr ]
+    asciiDisplay(img, 32, 32)
+
 while True:
     data = s.recv(1)
     count += 1
@@ -39,11 +43,11 @@ while True:
     elif data == ".":
         print("End array")
         recv_array = False
-        print(img_data)
+        # print(img_data)
         print(count)
-        print(len(img_data))
+        process(img_data.split(','))
         #  asciiDisplay(img_data, 32, 32)
     else:
-        print(data)
+        # print(data)
         img_data += data
-        print(img_data)
+        # print(img_data)

@@ -21,9 +21,11 @@ s.listen(10)
 
 while 1:
     conn, addr = s.accept()
-    img = imgProcessor.frame()
-    conn.send(bytes('*', 'utf-8'))
-    data = (','.join(str(x) for x in img.flatten().tolist()))
-    conn.send(bytes(data, 'utf-8'))
-    conn.send(bytes('.', 'utf-8'))
-    print('End')
+    while sending:
+        img = imgProcessor.frame()
+        conn.send(bytes('*', 'utf-8'))
+        data = (','.join(str(x) for x in img.flatten().tolist()))
+        conn.send(bytes(data, 'utf-8'))
+        conn.send(bytes('.', 'utf-8'))
+        print('End')
+        input('>> ')
