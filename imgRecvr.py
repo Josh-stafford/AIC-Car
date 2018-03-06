@@ -9,7 +9,6 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 s.connect((HOST, PORT))
 
-
 def asciiDisplay(arr, width, height):
     line = ''
     for i in range(0, len(arr)):
@@ -24,11 +23,6 @@ def asciiDisplay(arr, width, height):
             print(line)
             line = ''
 
-
-recv_array = False
-img_data = ""
-count = 0
-
 def process(arr):
     img = [ int(x) for x in arr ]
     asciiDisplay(img, 32, 32)
@@ -41,6 +35,10 @@ class recv(threading.Thread):
         self.name = name
 
     def run(self):
+        recv_array = False
+        img_data = ""
+        count = 0
+
         while True:
             data = s.recv(1)
             count += 1

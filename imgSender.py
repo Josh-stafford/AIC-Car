@@ -8,8 +8,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 HOST = ''
 PORT = 7776
-data = ''
-sending = True
+
 
 try:
     s.bind((HOST, PORT))
@@ -28,6 +27,9 @@ class send(threading.Thread):
         self.name = name
 
     def run(self):
+        data = ''
+        sending = True
+
         while 1:
             conn, addr = s.accept()
             while sending:
