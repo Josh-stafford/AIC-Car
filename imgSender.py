@@ -31,4 +31,4 @@ while 1:
         conn.send(bytes(data, 'utf-8'))
         conn.send(bytes('.', 'utf-8'))
         print('End')
-        sleep(0.2)
+        sleep(1/30)

@@ -12,26 +12,34 @@ def asciiDisplay(arr, width, height):
     line = ''
     for i in range(0, len(arr)):
         val = arr[i]
-        if val < 26:
-            line += '@ '
-        elif val < 52:
-            line += '% '
-        elif val < 78:
-            line += '# '
-        elif val < 104:
-            line += '* '
-        elif val < 130:
-            line += '+ '
-        elif val < 156:
-            line += '= '
-        elif val < 182:
-            line += '- '
-        elif val < 208:
-            line += ': '
-        elif val < 234:
-            line += '. '
-        elif val < 255:
-            line += '  '
+        # if val < 26:
+        #     line += '@ '
+        # elif val < 52:
+        #     line += '% '
+        # elif val < 78:
+        #     line += '# '
+        # elif val < 104:
+        #     line += '* '
+        # elif val < 130:
+        #     line += '+ '
+        # elif val < 156:
+        #     line += '= '
+        # elif val < 182:
+        #     line += '- '
+        # elif val < 208:
+        #     line += ': '
+        # elif val < 234:
+        #     line += '. '
+        # elif val < 255:
+        #     line += '  '
+        if val < 63:
+            line += ' '
+        elif val < 127:
+            line += '░░'
+        elif val < 191:
+            line += '▒▒'
+        else:
+            line += '▓▓'
         if i % width == 0:
             print(line)
             line = ''
