@@ -2,8 +2,10 @@ import socket, sys
 from time import sleep
 import imgProcessor
 import numpy as np
+import threading
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
 
 HOST = ''
 PORT = 7776
@@ -23,12 +25,14 @@ conn, addr = s.accept()
 data = ''
 sending = True
 
+def send_data():
+    threading.Timer(1/4, send_data).start ()
+    if data != '':
+        conn.send(bytes('*'+data+'.', 'utf-8'))
+
+send_data()
+
 while 1:
-    while sending:
-        img = imgProcessor.frame()
-        conn.send(bytes('*', 'utf-8'))
-        data = (','.join(str(x) for x in img.flatten().tolist()))
-        conn.send(bytes(data, 'utf-8'))
-        conn.send(bytes('.', 'utf-8'))
-        print('End')
-        sleep(1/30)
+    img = imgProcessor.frame()
+    data = (','.join(str(x) for x in img.flatten().tolist()))
+    print('End')
