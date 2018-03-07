@@ -1,7 +1,7 @@
 import socket
 from time import sleep
 
-HOST = '192.168.1.251'
+HOST = '172.20.12.146'
 PORT = int(input(">> "))
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -12,12 +12,26 @@ def asciiDisplay(arr, width, height):
     line = ''
     for i in range(0, len(arr)):
         val = arr[i]
-        if val < 85:
-            line += '. '
-        elif val < 170:
-            line += '\\ '
-        else:
+        if val < 26:
+            line += '@ '
+        elif val < 52:
             line += '% '
+        elif val < 78:
+            line += '# '
+        elif val < 104:
+            line += '* '
+        elif val < 130:
+            line += '+ '
+        elif val < 156:
+            line += '= '
+        elif val < 182:
+            line += '- '
+        elif val < 208:
+            line += ': '
+        elif val < 234:
+            line += '. '
+        elif val < 255:
+            line += '  '
         if i % width == 0:
             print(line)
             line = ''
