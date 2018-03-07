@@ -9,6 +9,7 @@ s.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
 
 HOST = ''
 PORT = 7776
+framerate = 60
 
 
 try:
@@ -26,7 +27,7 @@ data = ''
 sending = True
 
 def send_data():
-    threading.Timer(1/4, send_data).start ()
+    threading.Timer(1/framerate, send_data).start ()
     if data != '':
         conn.send(bytes('*'+data+'.', 'utf-8'))
 
