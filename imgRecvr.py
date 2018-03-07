@@ -3,6 +3,7 @@ from time import sleep
 import pygame
 import numpy
 import threading
+import sys
 
 pygame.init()
 
@@ -14,7 +15,7 @@ black = 0, 0, 0
 
 screen = pygame.display.set_mode(size)
 
-HOST = '127.0.0.1'#'172.20.12.187'
+HOST = '192.168.1.251'#'172.20.12.187'
 PORT = int(input(">> "))
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
