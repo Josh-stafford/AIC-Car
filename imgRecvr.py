@@ -9,6 +9,8 @@ pygame.init()
 
 resolution = 32;
 
+debug = True
+
 size = width, height = 480, 480
 speed = [2, 2]
 black = 0, 0, 0
@@ -48,13 +50,16 @@ def process():
 	threading.Timer(1/30, process).start ()
 	if data_array != []:
 		arr = [ (int(x),int(x),int(x)) for x in data_array ]
-		twod_array = numpy.reshape( arr, (resolution,resolution,3) )
 
-		new_surface = pygame.surfarray.make_surface(twod_array)
-		new_surface_rotate = pygame.transform.rotate(new_surface, 270)
-		new_surface_scale = pygame.transform.scale(new_surface_rotate, size)
-		rect = screen.blit( new_surface_scale, (0,0) )
-		pygame.display.update(rect)
+        if debug:
+            
+    		twod_array = numpy.reshape( arr, (resolution,resolution,3) )
+
+    		new_surface = pygame.surfarray.make_surface(twod_array)
+    		new_surface_rotate = pygame.transform.rotate(new_surface, 270)
+    		new_surface_scale = pygame.transform.scale(new_surface_rotate, size)
+    		rect = screen.blit( new_surface_scale, (0,0) )
+    		pygame.display.update(rect)
 
 process()
 
